@@ -32,118 +32,18 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Hero Banner Styles -->
     <style>
-        /* Hero Banner Section */
-        .hero-banner-section {
-            position: relative;
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-
-        .hero-banner-section .hero-banner {
-            width: 100%;
-            height: 800px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .hero-banner-section .hero-banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        .hero-banner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg,
-                    rgba(0, 0, 0, 0.7) 0%,
-                    rgba(0, 0, 0, 0.3) 100%);
-            display: flex;
-            align-items: center;
-        }
-
-       
-        .hero-cta-button {
-            display: inline-block;
-            background: #B04B34;
-            color: white;
-            padding: 15px 35px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 2px solid #B04B34;
-        }
-
-        .hero-cta-button:hover {
-            background: transparent;
-            color: white;
-            border-color: white;
-            transform: translateY(-3px);
-            text-decoration: none;
-        }
-
-        /* Responsive Hero Banner */
-        @media (max-width: 992px) {
-            .hero-banner-content h1 {
-                font-size: 2.8rem;
-            }
-
-            .hero-banner-content p {
-                font-size: 1.2rem;
-            }
-
-            .hero-banner-section .hero-banner {
-                height: 600px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-banner-content h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero-banner-content p {
-                font-size: 1.1rem;
-            }
-
-            .hero-banner-content {
-                padding: 0 20px;
-            }
-
-            .hero-banner-section .hero-banner {
-                height: 350px;
-            }
-
-            .hero-cta-button {
-                padding: 12px 25px;
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero-banner-content h1 {
-                font-size: 1.8rem;
-            }
-
-            .hero-banner-content p {
-                font-size: 1rem;
-            }
-
-            .hero-banner-section .hero-banner {
-                height: 300px;
-            }
-
-            .hero-banner-overlay {
-                background: linear-gradient(90deg,
-                        rgba(0, 0, 0, 0.8) 0%,
-                        rgba(0, 0, 0, 0.4) 100%);
-            }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
 
         /* Header Styles */
@@ -151,6 +51,16 @@
             background: #B04B34;
             padding: 10px 0;
             z-index: 1002;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+        }
+
+        .container.position-relative {
+            padding-left: 15px;
+            padding-right: 15px;
         }
 
         /* Remove underline from logo link */
@@ -182,22 +92,36 @@
             text-decoration: none !important;
         }
 
-        .btn-getstarted {
-            background: #cfa20c;
-            color: #fff;
+        /* UNIFIED BUTTON STYLES - Both buttons look the same */
+        .btn-getstarted, .btn-donate-nav {
+            background: #fff;
+            color: #B04B34;
             font-weight: 600;
-            padding: 8px 22px;
+            padding: 10px 24px;
             border-radius: 25px;
             text-decoration: none;
-            transition: 0.3s ease;
+            transition: all 0.3s ease;
             white-space: nowrap;
-            margin-left: 10px;
+            border: 2px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
         }
 
-        .btn-getstarted:hover {
-            background: #b8900a;
+        .btn-getstarted:hover, .btn-donate-nav:hover {
+            background: transparent;
             color: #fff;
+            border-color: #fff;
             text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        /* Header Buttons Container */
+        .header-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         @media (max-width: 991px) {
@@ -209,7 +133,7 @@
                 font-size: 1rem;
             }
 
-            .btn-getstarted {
+            .btn-getstarted, .btn-donate-nav {
                 display: none !important;
             }
 
@@ -219,92 +143,915 @@
                 cursor: pointer;
                 margin-left: 10px;
             }
+            
+            .header-buttons {
+                display: none;
+            }
         }
+        
         /* Simple fix for navmenu underline */
-.navmenu a {
-    text-decoration: none !important;
-    border-bottom: none !important;
-}
+        .navmenu a {
+            text-decoration: none !important;
+            border-bottom: none !important;
+        }
 
-.navmenu a.active {
-    border-bottom: none !important;
-    text-decoration: none !important;
-}
-/* ===== DONATE NOW BUTTON STYLES ===== */
-.donate-now-btn {
-    background-color: #B04B34;
-    color: white;
-    border: none;
-    padding: 15px 25px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 999;
-}
+        .navmenu a.active {
+            border-bottom: none !important;
+            text-decoration: none !important;
+        }
+        
+        /* Hero Banner Section - FIXED */
+        .hero-banner-section {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 70px; /* For fixed header */
+        }
 
-/* Desktop - Vertical right side button */
-.desktop-donate-btn {
-    position: fixed;
-    right: -40px;
-    top: 50%;
-    transform: translateY(-50%) rotate(-90deg);
-    background: #b04b34;
-    color: #fff;
-    padding: 14px 25px;
-    font-size: 20px;
-    font-weight: 700;
-    text-decoration: none;
-    border-radius: 6px 6px 0 0;
-    z-index: 9999;
-    letter-spacing: 1px;
-    display: none;
-    border: none;
-    cursor: pointer;
-}
+        .hero-banner {
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            overflow: hidden;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
 
-.desktop-donate-btn:hover {
-    background: #9a3f2d;
-    right: -38px;
-}
+        .hero-banner img {
+            width: 100%;
+            height: auto;
+            min-height: 400px;
+            max-height: 90vh;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
 
-/* Mobile - Fixed bottom button */
-.mobile-donate-btn {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 15px;
-    text-align: center;
-    display: none;
-    background-color: #b04b34;
-    color: white;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 999;
-    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
-    font-size: 18px;
-}
+        /* Mobile Donate Button - Matching style */
+        .mobile-donate-btn {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 16px;
+            text-align: center;
+            display: none;
+            background-color: #B04B34;
+            color: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
 
-.mobile-donate-btn:hover {
-    background-color: #9a3f2d;
-}
+        .mobile-donate-btn:hover {
+            background-color: #a5422a;
+            color: white;
+        }
 
-/* Responsive display */
-@media (min-width: 992px) {
-    .desktop-donate-btn {
-        display: block;
-    }
-}
+        @media (max-width: 991px) {
+            .mobile-donate-btn {
+                display: block;
+            }
+            
+            .hero-banner-section {
+                margin-top: 60px;
+            }
+            
+            .hero-banner img {
+                min-height: 300px;
+                max-height: 60vh;
+            }
+        }
 
-@media (max-width: 991px) {
-    .mobile-donate-btn {
-        display: block;
-    }
-}
+        @media (max-width: 768px) {
+            .hero-banner-section {
+                margin-top: 60px;
+            }
+            
+            .hero-banner img {
+                min-height: 250px;
+                max-height: 50vh;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-banner-section {
+                margin-top: 50px;
+            }
+            
+            .hero-banner img {
+                min-height: 200px;
+                max-height: 40vh;
+            }
+        }
+
+        /* Main Content */
+        .main {
+            padding-top: 0;
+        }
+
+        /* About Section */
+        #about-season {
+            padding: 40px 0 50px 0 !important;
+            margin-top: 0;
+        }
+
+        /* UNIQUE GOAL SECTION */
+        .uniquegoal-section {
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            font-family: 'Raleway', sans-serif;
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .uniquegoal-section:hover {
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .uniquegoal-heading {
+            color: #B04B3B;
+            font-size: 1.4rem;
+            letter-spacing: 0.6px;
+            line-height: 1.4;
+        }
+
+        .timeline-text {
+            font-size: 0.9rem;
+            color: #B04B34;
+            font-style: italic;
+        }
+
+        .uniquegoal-progress-container {
+            width: 100%;
+            height: 26px;
+            border-radius: 50px;
+            background-color: #f6f6f6;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .uniquegoal-progress-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 50px;
+            background: linear-gradient(90deg, #7A291F, #9C3F32, #B04B3B);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+            transition: width 0.8s ease-in-out;
+        }
+
+        .uniquegoal-progress-text {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #333;
+            pointer-events: none;
+            z-index: 10;
+            text-shadow: 
+                0 0 3px rgba(255, 255, 255, 0.9),
+                0 0 5px rgba(255, 255, 255, 0.7),
+                0 0 7px rgba(255, 255, 255, 0.5);
+            min-width: 40px;
+            text-align: center;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(2px);
+        }
+
+        .uniquegoal-progress-container .uniquegoal-progress-text.high-progress {
+            color: #fff;
+            text-shadow: 
+                0 0 3px rgba(0, 0, 0, 0.9),
+                0 0 5px rgba(0, 0, 0, 0.7),
+                0 0 7px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .inr-text {
+            font-size: 0.9rem;
+            color: #B04B3B;
+            font-weight: 600;
+        }
+
+        .note-text {
+            background: rgba(176, 75, 59, 0.08);
+            border-left: 4px solid #B04B3B;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #444;
+            font-style: italic;
+            text-align: left;
+        }
+
+        .note-text strong {
+            color: #B04B3B;
+            font-style: normal;
+        }
+
+        .donation-message {
+            font-family: 'Raleway', sans-serif;
+            color: #444;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .donation-line {
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            margin-bottom: 6px;
+        }
+
+        .highlight-text {
+            color: #B04B3B;
+            font-weight: 700;
+        }
+
+        .contributors-count {
+            display: inline-block;
+            background: rgba(176, 75, 59, 0.08);
+            border-radius: 30px;
+            padding: 6px 22px;
+            margin: 12px auto;
+            border: 1px solid rgba(176, 75, 59, 0.15);
+            box-shadow: 0 2px 6px rgba(176, 75, 59, 0.08);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .contributors-count:hover {
+            background: rgba(176, 75, 59, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .contributors-text {
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .contributor-number {
+            color: #B04B3B;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .uniquegoal-heading {
+                font-size: 1.15rem;
+            }
+
+            .uniquegoal-progress-container {
+                height: 22px;
+            }
+
+            .uniquegoal-progress-text {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .uniquegoal-progress-container {
+                height: 20px;
+            }
+
+            .uniquegoal-progress-text {
+                font-size: 0.8rem;
+            }
+
+            .donation-line {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Impact Section */
+        .full-width-bg {
+            background: #eeeeeebe;
+            width: 100%;
+            position: relative;
+            padding: 60px 0;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            perspective: 1000px;
+            width: 220px;
+            height: 240px;
+            margin: 10px;
+        }
+
+        .flip-card-front h5 {
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            border-radius: 15px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            font-weight: bold;
+        }
+
+        .flip-card-front {
+            background: #B04B34;
+            color: #fff;
+        }
+
+        .flip-card-back {
+            background: #fff;
+            color: #B04B34;
+            transform: rotateY(180deg);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #B04B34, #e57c6f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(176, 75, 52, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .icon-circle:hover {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 8px 30px rgba(176, 75, 52, 0.5);
+        }
+
+        .btn-donor-cta {
+            background-color: #fff;
+            color: #B04B34;
+            font-weight: 600;
+            padding: 14px 28px;
+            font-size: 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-donor-cta:hover {
+            background-color: transparent;
+            color: #B04B34;
+            border-color: #B04B34;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        /* Stats Section */
+        .contrib-stats {
+            padding: 60px 0;
+        }
+
+        .contrib-stats-item {
+            background: #fff;
+            border-radius: 15px;
+            padding: 2rem 1rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .contrib-stats-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contrib-stats-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #B04B34;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .contrib-stats-label {
+            font-size: 1.5rem;
+            color: #555;
+            margin: 0;
+        }
+
+        /* Testimonials Section */
+        .voicestest {
+            background-color: #fff;
+            padding: 60px 0;
+        }
+
+        .testimonial {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .testimonial-text {
+            flex: 1;
+        }
+
+        .testimonial-text p {
+            font-size: 1rem;
+            color: #0f0f0f;
+            line-height: 1.7;
+        }
+
+        .quote-icon {
+            font-size: 40px;
+            color: #b04b344f;
+            line-height: 1;
+            display: block;
+        }
+
+        .open-quote {
+            font-size: 30px;
+            color: #b04b34cd;
+            display: inline-block;
+            line-height: 0.5;
+            margin-bottom: 10px;
+        }
+
+        .close-quote {
+            font-size: 30px;
+            color: #b04b34b9;
+            transform: rotate(180deg) translateY(5px);
+            display: inline-block;
+            line-height: 0.5;
+            margin-top: 10px;
+        }
+
+        .testimonial-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            border-bottom: 2px solid #B04B34;
+            display: inline-block;
+            padding-bottom: 2px;
+        }
+
+        .testimonial-title {
+            font-size: 0.95rem;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .testimonial img {
+            width: 250px;
+            height: auto;
+            border-radius: 10px;
+            object-fit: contain;
+        }
+
+        .carousel-indicators [data-bs-target] {
+            background-color: #B04B34;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+
+        .carousel-indicators {
+            bottom: -50px;
+        }
+
+        /* Rewards Section */
+        .rewards-unique-section {
+            padding: 80px 0;
+            background-color: #f9fafb;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .rewards-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .rewards-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #B04B34;
+            font-weight: 600;
+        }
+
+        .rewards-list {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            justify-items: center;
+            gap: 40px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .rewards-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            background: transparent;
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        .rewards-item:hover {
+            transform: translateY(-5px);
+            background: transparent;
+        }
+
+        .rewards-item .icon {
+            font-size: 3rem;
+            color: #B04B34;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .rewards-item:hover .icon {
+            transform: scale(1.2);
+            color: #8a3a28;
+        }
+
+        .rewards-item p {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #B04B34;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+                .footer-contact, .footer-links {
+                    text-align: center !important;
+                    margin-top: 20px;
+                }
+                
+                .footer .row {
+                    text-align: center;
+                }
+                
+                .social-links {
+                    justify-content: center;
+                }
+            }
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .rewards-list {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px 30px;
+            }
+            
+            .rewards-title {
+                font-size: 2.2rem;
+            }
+            
+            .rewards-item p {
+                font-size: 1.2rem;
+            }
+            
+            .contrib-stats-number {
+                font-size: 2.5rem;
+            }
+            
+            .contrib-stats-label {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-banner img {
+                min-height: 350px;
+            }
+            
+            .flip-card {
+                width: 200px;
+                height: 220px;
+                margin: 8px;
+            }
+            
+            .rewards-unique-section {
+                padding: 60px 0;
+            }
+            
+            .rewards-item .icon {
+                font-size: 2.5rem;
+            }
+            
+            .contrib-stats-number {
+                font-size: 2.2rem;
+            }
+            
+            .contrib-stats-label {
+                font-size: 1.2rem;
+            }
+            
+            .contrib-stats-item {
+                padding: 1.5rem 1rem;
+            }
+            
+            .testimonial {
+                gap: 30px;
+            }
+            
+            .testimonial img {
+                width: 200px;
+            }
+            
+            .testimonial-text p {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner img {
+                min-height: 300px;
+            }
+            
+            .flip-card {
+                width: 180px;
+                height: 200px;
+                margin: 8px;
+            }
+            
+            .icon-circle {
+                width: 70px;
+                height: 70px;
+                font-size: 1.5rem;
+            }
+            
+            .btn-donor-cta {
+                font-size: 1.3rem;
+                padding: 12px 24px;
+            }
+            
+            .rewards-list {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px 20px;
+            }
+            
+            .rewards-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            
+            .rewards-item .icon {
+                font-size: 2.5rem;
+            }
+            
+            .rewards-item p {
+                font-size: 1rem;
+            }
+            
+            .voicestest {
+                padding: 40px 0 80px 0;
+            }
+
+            .testimonial {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .testimonial img {
+                width: 180px;
+                height: 180px;
+                margin: 0 auto;
+                object-fit: contain;
+            }
+
+            .testimonial-text {
+                padding: 0 10px;
+                width: 100%;
+            }
+
+            .testimonial-text p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+                text-align: left;
+            }
+
+            .testimonial-name,
+            .testimonial-title {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            .quote-icon {
+                font-size: 35px;
+                margin-bottom: 50px;
+            }
+
+            .testimonial-text .open-quote {
+                display: inline-block;
+                text-align: justify;
+                float: left;
+                margin-right: 10px;
+            }
+
+            .open-quote,
+            .close-quote {
+                font-size: 25px;
+                display: inline-block;
+            }
+
+            .testimonial-text .quote-icon:first-child {
+                text-align: left !important;
+            }
+            
+            .contrib-stats-number {
+                font-size: 2rem;
+            }
+            
+            .contrib-stats-label {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-banner img {
+                min-height: 250px;
+            }
+            
+            .flip-card {
+                width: 250px;
+                height: 170px;
+                margin: 5px;
+            }
+            
+            .flip-card-front h5 {
+                font-size: 1rem;
+                margin-top: 0.5rem;
+            }
+            
+            .icon-circle {
+                width: 60px;
+                height: 60px;
+                font-size: 1.3rem;
+            }
+            
+            .flip-card-back p {
+                font-size: 0.85rem;
+                padding: 5px;
+            }
+            
+            .btn-donor-cta {
+                font-size: 1.1rem;
+                padding: 10px 20px;
+            }
+            
+            .rewards-unique-section {
+                padding: 50px 0;
+            }
+
+            .rewards-list {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px 15px;
+            }
+
+            .rewards-title {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+                font-weight: 600;
+            }
+
+            .rewards-item .icon {
+                font-size: 2.2rem;
+                margin-bottom: 10px;
+            }
+
+            .rewards-item p {
+                font-size: 0.9rem;
+            }
+            
+            .voicestest {
+                padding: 30px 0 70px 0;
+            }
+
+            .testimonial img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .testimonial-text p {
+                font-size: 0.9rem;
+            }
+
+            .testimonial-name {
+                font-size: 1.1rem;
+            }
+
+            .testimonial-title {
+                font-size: 0.85rem;
+            }
+            
+            h2.fw-bold.display-6 {
+                font-size: 1.8rem;
+            }
+            
+            .contrib-stats-number {
+                font-size: 1.8rem;
+            }
+            
+            .contrib-stats-label {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero-banner img {
+                min-height: 200px;
+            }
+            
+            .flip-card {
+                width: 140px;
+                height: 160px;
+            }
+            
+            .flip-card-front h5 {
+                font-size: 0.9rem;
+            }
+            
+            .rewards-list {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px 10px;
+            }
+            
+            .rewards-item p {
+                font-size: 0.85rem;
+            }
+            
+            .rewards-item .icon {
+                font-size: 2rem;
+            }
+            
+            .testimonial-text {
+                padding: 0 5px;
+            }
+
+            .testimonial-text p {
+                font-size: 0.85rem;
+            }
+            
+            .testimonial img {
+                width: 130px;
+                height: 130px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .rewards-list {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .rewards-title {
+                font-size: 1.6rem;
+            }
+        }
     </style>
 
 </head>
@@ -331,33 +1078,33 @@
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
-            <a class="btn-getstarted d-none d-sm-block" href="https://iitk.ac.in/dora/annualgiving/wallofdonors.php">
-                Wall Of Donors
-            </a>
-           
+            <!-- Header Buttons Container -->
+            <div class="header-buttons">
+                <a class="btn-donate-nav" href="https://iitk.ac.in/dora/annualgiving/wallofdonors.php" target="_blank">
+                    Wall Of Donors
+                </a>
+                <a class="btn-donate-nav" href="https://iitk.ac.in/dora/givingback/donate/Annual-Gift-Programme" target="_blank">
+                    Donate Now
+                </a>
+            </div>
         </div>
     </header>
 
     <!-- Hero Banner Section -->
     <section class="hero-banner-section">
         <div class="hero-banner">
-            <img src="banner.jpeg" alt="Annual Giving Banner" class="img-fluid">
-            
+            <img src="bannera.jpeg" alt="Annual Giving Banner">
         </div>
     </section>
  
- <!-- Donate Now Buttons - FIXED VERSION -->
- <a href="https://iitk.ac.in/dora/givingback/donate/Annual-Gift-Programme">
-    <button class="desktop-donate-btn">Donate Now</button>
-  </a>
-  
-  <a href="https://iitk.ac.in/dora/givingback/donate/Annual-Gift-Programme">
-    <button class="mobile-donate-btn">Donate Now</button>
-  </a>
+    <!-- Mobile Donate Now Button -->
+    <a href="https://iitk.ac.in/dora/givingback/donate/Annual-Gift-Programme" target="_blank" class="mobile-donate-btn">
+        Donate Now
+    </a>
   
     <main class="main">
         <!-- About Section -->
-        <section id="about-season" class="about-season section" style="padding: 50px 0;">
+        <section id="about-season" class="about-season section" style="padding: 40px 0 50px 0;">
             <div class="container">
                 <div class="row align-items-center gy-4">
                     <div class="col-lg-6">
@@ -449,215 +1196,6 @@
                     
                 </div>
             </div>
-           <style>
-            /* ===============================
-   UNIQUE GOAL SECTION
-================================ */
-
-.uniquegoal-section {
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    font-family: 'Raleway', sans-serif;
-    transition: all 0.4s ease;
-    text-align: center;
-}
-
-.uniquegoal-section:hover {
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
-    transform: translateY(-4px);
-}
-
-/* ===============================
-   HEADINGS
-================================ */
-
-.uniquegoal-heading {
-    color: #B04B3B;
-    font-size: 1.4rem;
-    letter-spacing: 0.6px;
-    line-height: 1.4;
-}
-
-.timeline-text {
-    font-size: 0.9rem;
-    color: #B04B34;
-    font-style: italic;
-}
-
-/* ===============================
-   PROGRESS BAR
-================================ */
-
-.uniquegoal-progress-container {
-    width: 100%;
-    height: 26px;
-    border-radius: 50px;
-    background-color: #f6f6f6;
-    position: relative;
-    overflow: hidden;
-}
-
-.uniquegoal-progress-fill {
-    height: 100%;
-    width: 0%;
-    border-radius: 50px;
-    background: linear-gradient(90deg, #7A291F, #9C3F32, #B04B3B);
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
-    transition: width 0.8s ease-in-out;
-}
-
-/* 🔥 FIXED PERCENT TEXT - Now visible on all backgrounds */
-.uniquegoal-progress-text {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #333;
-    pointer-events: none;
-    z-index: 10;
-    text-shadow: 
-        0 0 3px rgba(255, 255, 255, 0.9),
-        0 0 5px rgba(255, 255, 255, 0.7),
-        0 0 7px rgba(255, 255, 255, 0.5);
-    min-width: 40px;
-    text-align: center;
-    padding: 2px 6px;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(2px);
-}
-
-/* When progress is high, change text color to white for better contrast */
-.uniquegoal-progress-container .uniquegoal-progress-text.high-progress {
-    color: #fff;
-    text-shadow: 
-        0 0 3px rgba(0, 0, 0, 0.9),
-        0 0 5px rgba(0, 0, 0, 0.7),
-        0 0 7px rgba(0, 0, 0, 0.5);
-    background: rgba(0, 0, 0, 0.2);
-}
-
-/* ===============================
-   AMOUNT TEXT
-================================ */
-
-.inr-text {
-    font-size: 0.9rem;
-    color: #B04B3B;
-    font-weight: 600;
-}
-
-/* ===============================
-   NOTE BOX
-================================ */
-
-.note-text {
-    background: rgba(176, 75, 59, 0.08);
-    border-left: 4px solid #B04B3B;
-    padding: 10px 14px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    color: #444;
-    font-style: italic;
-    text-align: left;
-}
-
-.note-text strong {
-    color: #B04B3B;
-    font-style: normal;
-}
-
-/* ===============================
-   DONATION MESSAGE
-================================ */
-
-.donation-message {
-    font-family: 'Raleway', sans-serif;
-    color: #444;
-    text-align: center;
-    line-height: 1.6;
-}
-
-.donation-line {
-    font-size: 1.05rem;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    margin-bottom: 6px;
-}
-
-.highlight-text {
-    color: #B04B3B;
-    font-weight: 700;
-}
-
-/* ===============================
-   CONTRIBUTORS COUNT
-================================ */
-
-.contributors-count {
-    display: inline-block;
-    background: rgba(176, 75, 59, 0.08);
-    border-radius: 30px;
-    padding: 6px 22px;
-    margin: 12px auto;
-    border: 1px solid rgba(176, 75, 59, 0.15);
-    box-shadow: 0 2px 6px rgba(176, 75, 59, 0.08);
-    transition: all 0.3s ease-in-out;
-}
-
-.contributors-count:hover {
-    background: rgba(176, 75, 59, 0.12);
-    transform: translateY(-2px);
-}
-
-.contributors-text {
-    font-size: 1rem;
-    letter-spacing: 0.3px;
-    color: #333;
-    font-weight: 500;
-}
-
-.contributor-number {
-    color: #B04B3B;
-    font-weight: 700;
-    font-size: 1.1rem;
-}
-
-/* ===============================
-   RESPONSIVE
-================================ */
-
-@media (max-width: 768px) {
-    .uniquegoal-heading {
-        font-size: 1.15rem;
-    }
-
-    .uniquegoal-progress-container {
-        height: 22px;
-    }
-
-    .uniquegoal-progress-text {
-        font-size: 0.85rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .uniquegoal-progress-container {
-        height: 20px;
-    }
-
-    .uniquegoal-progress-text {
-        font-size: 0.8rem;
-    }
-
-    .donation-line {
-        font-size: 0.95rem;
-    }
-}
-
-           </style>
         </section>
 
         <!-- Impact Section -->
@@ -715,173 +1253,6 @@
                     </div>
                 </div>
             </div>
-            <style>
-                .flip-card {
-                    background-color: transparent;
-                    perspective: 1000px;
-                    width: 220px;
-                    height: 240px;
-                    margin: 10px;
-                }
-
-                .flip-card-front h5 {
-                    margin-top: 1rem;
-                    font-weight: bold;
-                    color: #fff;
-                }
-
-                .flip-card-inner {
-                    position: relative;
-                    width: 100%;
-                    height: 100%;
-                    text-align: center;
-                    transition: transform 0.6s;
-                    transform-style: preserve-3d;
-                    border-radius: 15px;
-                    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
-                }
-
-                .flip-card:hover .flip-card-inner {
-                    transform: rotateY(180deg);
-                }
-
-                .flip-card-front,
-                .flip-card-back {
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 15px;
-                    backface-visibility: hidden;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 1rem;
-                    font-weight: bold;
-                }
-
-                .flip-card-front {
-                    background: #B04B34;
-                    color: #fff;
-                }
-
-                .flip-card-back {
-                    background: #fff;
-                    color: #B04B34;
-                    transform: rotateY(180deg);
-                    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
-                }
-
-                .icon-circle {
-                    width: 80px;
-                    height: 80px;
-                    border-radius: 50%;
-                    background: linear-gradient(135deg, #B04B34, #e57c6f);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 1.8rem;
-                    color: #fff;
-                    box-shadow: 0 4px 20px rgba(176, 75, 52, 0.3);
-                    transition: transform 0.3s, box-shadow 0.3s;
-                }
-
-                .icon-circle:hover {
-                    transform: scale(1.15) rotate(10deg);
-                    box-shadow: 0 8px 30px rgba(176, 75, 52, 0.5);
-                }
-
-                .full-width-bg {
-                    background: #eeeeeebe;
-                    width: 100vw;
-                    position: relative;
-                    left: 50%;
-                    right: 50%;
-                    margin-left: -50vw;
-                    margin-right: -50vw;
-                }
-
-                .btn-donor-cta {
-                    background-color: #B04B34;
-                    color: #fff;
-                    font-weight: 600;
-                    padding: 18px 28px;
-                    font-size: 2rem;
-                    border-radius: 8px;
-                    text-decoration: none;
-                    display: inline-block;
-                    transition: all 0.3s ease;
-                }
-
-                .btn-donor-cta:hover {
-                    background-color: #9a3f2d;
-                    transform: translateY(-2px);
-                    text-decoration: none;
-                    color: #fff;
-                }
-
-                @media (max-width: 992px) {
-                    .flip-card {
-                        width: 200px;
-                        height: 220px;
-                        margin: 8px;
-                    }
-                }
-
-                @media (max-width: 768px) {
-                    .flip-card {
-                        width: 180px;
-                        height: 200px;
-                        margin: 8px;
-                    }
-                    
-                    .icon-circle {
-                        width: 70px;
-                        height: 70px;
-                        font-size: 1.5rem;
-                    }
-                }
-
-                @media (max-width: 576px) {
-                    .d-flex.flex-wrap {
-                        justify-content: center !important;
-                        gap: 15px !important;
-                    }
-                    
-                    .flip-card {
-                        width: 250px;
-                        height: 170px;
-                        margin: 5px;
-                    }
-                    
-                    .flip-card-front h5 {
-                        font-size: 1rem;
-                        margin-top: 0.5rem;
-                    }
-                    
-                    .icon-circle {
-                        width: 60px;
-                        height: 60px;
-                        font-size: 1.3rem;
-                    }
-                    
-                    .flip-card-back p {
-                        font-size: 0.85rem;
-                        padding: 5px;
-                    }
-                }
-
-                @media (max-width: 400px) {
-                    .flip-card {
-                        width: 140px;
-                        height: 160px;
-                    }
-                    
-                    .flip-card-front h5 {
-                        font-size: 0.9rem;
-                    }
-                }
-            </style>
         </section>
 
         <!-- Stats Section -->
@@ -931,92 +1302,6 @@
                 <a href="wallofdonors.html" class="btn btn-donor-cta" target="_blank" rel="noopener noreferrer">Wall of
                     Donors</a>
             </div>
-            <style>
-                .contrib-stats-item {
-                    background: #fff;
-                    border-radius: 15px;
-                    padding: 2rem 1rem;
-                    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-                    transition: transform 0.3s;
-                }
-
-                .contrib-stats-item:hover {
-                    transform: translateY(-5px);
-                }
-
-                .contrib-stats-number {
-                    font-size: 3rem;
-                    font-weight: bold;
-                    color: #B04B34;
-                    display: block;
-                    margin-bottom: 0.5rem;
-                }
-
-                .contrib-stats-label {
-                    font-size: 1.5rem;
-                    color: #555;
-                    margin: 0;
-                }
-
-                @media (max-width: 1200px) {
-                    .contrib-stats-number {
-                        font-size: 2.5rem;
-                    }
-                    
-                    .contrib-stats-label {
-                        font-size: 1.3rem;
-                    }
-                }
-
-                @media (max-width: 992px) {
-                    .contrib-stats-number {
-                        font-size: 2.2rem;
-                    }
-                    
-                    .contrib-stats-label {
-                        font-size: 1.2rem;
-                    }
-                    
-                    .contrib-stats-item {
-                        padding: 1.5rem 1rem;
-                    }
-                }
-
-                @media (max-width: 768px) {
-                    .contrib-stats-number {
-                        font-size: 2rem;
-                    }
-                    
-                    .contrib-stats-label {
-                        font-size: 1.1rem;
-                    }
-                    
-                    .btn-donor-cta {
-                        font-size: 1.5rem;
-                        padding: 15px 25px;
-                    }
-                }
-
-                @media (max-width: 576px) {
-                    .contrib-stats-number {
-                        font-size: 1.8rem;
-                    }
-                    
-                    .contrib-stats-label {
-                        font-size: 1rem;
-                    }
-                    
-                    .btn-donor-cta {
-                        font-size: 1.3rem;
-                        padding: 12px 20px;
-                    }
-                    
-                    .container.text-center.px-5 {
-                        padding-left: 15px !important;
-                        padding-right: 15px !important;
-                    }
-                }
-            </style>
         </section>
 
         <!-- Testimonials Section -->
@@ -1076,201 +1361,6 @@
                     <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1"></button>
                 </div>
             </div>
-            <style>
-                .voicestest {
-                    background-color: #fff;
-                    padding: 60px 0;
-                }
-
-                .testimonial {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    gap: 40px;
-                }
-
-                .testimonial-text {
-                    flex: 1;
-                }
-
-                .testimonial-text p {
-                    font-size: 1rem;
-                    color: #0f0f0f;
-                    line-height: 1.7;
-                }
-
-                .quote-icon {
-                    font-size: 40px;
-                    color: #b04b344f;
-                    line-height: 1;
-                    display: block;
-                }
-
-                .open-quote {
-                    font-size: 30px;
-                    color: #b04b34cd;
-                    display: inline-block;
-                    line-height: 0.5;
-                    margin-bottom: 10px;
-                }
-
-                .close-quote {
-                    font-size: 30px;
-                    color: #b04b34b9;
-                    transform: rotate(180deg) translateY(5px);
-                    display: inline-block;
-                    line-height: 0.5;
-                    margin-top: 10px;
-                }
-
-                .testimonial-name {
-                    font-weight: 700;
-                    font-size: 1.2rem;
-                    margin-top: 20px;
-                    border-bottom: 2px solid #B04B34;
-                    display: inline-block;
-                    padding-bottom: 2px;
-                }
-
-                .testimonial-title {
-                    font-size: 0.95rem;
-                    color: #555;
-                    margin-top: 5px;
-                }
-
-                .testimonial img {
-                    width: 250px;
-                    height: auto;
-                    border-radius: 10px;
-                    object-fit: contain;
-                }
-
-                .carousel-indicators [data-bs-target] {
-                    background-color: #B04B34;
-                    width: 12px;
-                    height: 12px;
-                    border-radius: 50%;
-                    margin: 0 5px;
-                }
-
-                .carousel-indicators {
-                    bottom: -50px;
-                }
-
-                @media (max-width: 992px) {
-                    .testimonial {
-                        gap: 30px;
-                    }
-                    
-                    .testimonial img {
-                        width: 200px;
-                    }
-                    
-                    .testimonial-text p {
-                        font-size: 0.95rem;
-                    }
-                }
-
-                @media (max-width: 768px) {
-                    .voicestest {
-                        padding: 40px 0 80px 0;
-                    }
-
-                    .testimonial {
-                        flex-direction: column;
-                        text-align: center;
-                        gap: 20px;
-                    }
-
-                    .testimonial img {
-                        width: 180px;
-                        height: 180px;
-                        margin: 0 auto;
-                        object-fit: contain;
-                    }
-
-                    .testimonial-text {
-                        padding: 0 10px;
-                        width: 100%;
-                    }
-
-                    .testimonial-text p {
-                        font-size: 0.95rem;
-                        line-height: 1.6;
-                        text-align: left;
-                    }
-
-                    .testimonial-name,
-                    .testimonial-title {
-                        text-align: center;
-                        margin-bottom: 10px;
-                    }
-
-                    .quote-icon {
-                        font-size: 35px;
-                        margin-bottom: 50px;
-                    }
-
-                    .testimonial-text .open-quote {
-                        display: inline-block;
-                        text-align: justify;
-                        float: left;
-                        margin-right: 10px;
-                    }
-
-                    .open-quote,
-                    .close-quote {
-                        font-size: 25px;
-                        display: inline-block;
-                    }
-
-                    .testimonial-text .quote-icon:first-child {
-                        text-align: left !important;
-                    }
-                }
-
-                @media (max-width: 576px) {
-                    .voicestest {
-                        padding: 30px 0 70px 0;
-                    }
-
-                    .testimonial img {
-                        width: 150px;
-                        height: 150px;
-                    }
-
-                    .testimonial-text p {
-                        font-size: 0.9rem;
-                    }
-
-                    .testimonial-name {
-                        font-size: 1.1rem;
-                    }
-
-                    .testimonial-title {
-                        font-size: 0.85rem;
-                    }
-                    
-                    h2.fw-bold.display-6 {
-                        font-size: 1.8rem;
-                    }
-                }
-
-                @media (max-width: 400px) {
-                    .testimonial-text {
-                        padding: 0 5px;
-                    }
-
-                    .testimonial-text p {
-                        font-size: 0.85rem;
-                    }
-                    
-                    .testimonial img {
-                        width: 130px;
-                        height: 130px;
-                    }
-                }
-            </style>
         </section>
 
         <!-- Rewards Section -->
@@ -1301,171 +1391,6 @@
                     </div>
                 </div>
             </div>
-            <style>
-                .rewards-unique-section {
-                    padding: 80px 0;
-                    background-color: #f9fafb;
-                    font-family: 'Inter', sans-serif;
-                }
-
-                .rewards-unique-section .rewards-container {
-                    max-width: 1400px;
-                    margin: 0 auto;
-                    padding: 0 20px;
-                }
-
-                .rewards-unique-section .rewards-title {
-                    text-align: center;
-                    font-size: 2.5rem;
-                    margin-bottom: 60px;
-                    color: #B04B34;
-                    font-weight: 600;
-                }
-
-                .rewards-unique-section .rewards-list {
-                    display: grid;
-                    grid-template-columns: repeat(5, 1fr);
-                    justify-items: center;
-                    gap: 40px;
-                    margin: 0 auto;
-                    width: 100%;
-                }
-
-                .rewards-unique-section .rewards-item {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center;
-                    padding: 0;
-                    transition: transform 0.3s ease;
-                    cursor: pointer;
-                    background: transparent;
-                    box-shadow: none;
-                    border-radius: 0;
-                }
-
-                .rewards-unique-section .rewards-item:hover {
-                    transform: translateY(-5px);
-                    background: transparent;
-                }
-
-                .rewards-unique-section .rewards-item .icon {
-                    font-size: 3rem;
-                    color: #B04B34;
-                    margin-bottom: 15px;
-                    transition: transform 0.3s ease, color 0.3s ease;
-                }
-
-                .rewards-unique-section .rewards-item:hover .icon {
-                    transform: scale(1.2);
-                    color: #8a3a28;
-                }
-
-                .rewards-unique-section .rewards-item p {
-                    font-size: 1.5rem;
-                    font-weight: 500;
-                    color: #B04B34;
-                    margin: 0;
-                    line-height: 1.4;
-                }
-
-                @media (max-width: 1200px) {
-                    .rewards-unique-section .rewards-list {
-                        grid-template-columns: repeat(3, 1fr);
-                        gap: 40px 30px;
-                    }
-
-                    .rewards-unique-section .rewards-title {
-                        font-size: 2.2rem;
-                    }
-                    
-                    .rewards-unique-section .rewards-item p {
-                        font-size: 1.2rem;
-                    }
-                }
-
-                @media (max-width: 992px) {
-                    .rewards-unique-section {
-                        padding: 60px 0;
-                    }
-                    
-                    .rewards-unique-section .rewards-item .icon {
-                        font-size: 2.5rem;
-                    }
-                }
-
-                @media (max-width: 768px) {
-                    .rewards-unique-section .rewards-list {
-                        grid-template-columns: repeat(2, 1fr);
-                        gap: 30px 20px;
-                    }
-
-                    .rewards-unique-section .rewards-title {
-                        font-size: 2rem;
-                        margin-bottom: 40px;
-                    }
-
-                    .rewards-unique-section .rewards-item .icon {
-                        font-size: 2.5rem;
-                    }
-
-                    .rewards-unique-section .rewards-item p {
-                        font-size: 1rem;
-                    }
-                }
-
-                @media (max-width: 576px) {
-                    .rewards-unique-section {
-                        padding: 50px 0;
-                    }
-
-                    .rewards-unique-section .rewards-list {
-                        grid-template-columns: repeat(2, 1fr);
-                        gap: 25px 15px;
-                    }
-
-                    .rewards-unique-section .rewards-title {
-                        font-size: 1.8rem;
-                        margin-bottom: 30px;
-                        font-weight: 600;
-                    }
-
-                    .rewards-unique-section .rewards-item .icon {
-                        font-size: 2.2rem;
-                        margin-bottom: 10px;
-                    }
-
-                    .rewards-unique-section .rewards-item p {
-                        font-size: 0.9rem;
-                    }
-                }
-
-                @media (max-width: 400px) {
-                    .rewards-unique-section .rewards-list {
-                        grid-template-columns: repeat(2, 1fr);
-                        gap: 20px 10px;
-                    }
-                    
-                    .rewards-unique-section .rewards-item p {
-                        font-size: 0.85rem;
-                    }
-                    
-                    .rewards-unique-section .rewards-item .icon {
-                        font-size: 2rem;
-                    }
-                }
-
-                @media (max-width: 360px) {
-                    .rewards-unique-section .rewards-list {
-                        grid-template-columns: 1fr;
-                        gap: 20px;
-                    }
-
-                    .rewards-unique-section .rewards-title {
-                        font-size: 1.6rem;
-                    }
-                }
-            </style>
         </section>
 
         <!-- Stories Section -->
@@ -1764,51 +1689,6 @@
 
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
-
-    <!-- Donate Now Button JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Donation URL - Replace with your actual donation link
-            const DONATION_URL = 'https://iitk.ac.in/dora/annualgiving/donation.php';
-            
-            // Get both buttons
-            const desktopBtn = document.getElementById('desktopDonateBtn');
-            const mobileBtn = document.getElementById('mobileDonateBtn');
-            
-            // Add click event to desktop button
-            if (desktopBtn) {
-                desktopBtn.addEventListener('click', function() {
-                    window.open(DONATION_URL, '_blank');
-                });
-            }
-            
-            // Add click event to mobile button
-            if (mobileBtn) {
-                mobileBtn.addEventListener('click', function() {
-                    window.open(DONATION_URL, '_blank');
-                });
-            }
-            
-            // Responsive button visibility (CSS already handles this, but this is backup)
-            function updateButtonVisibility() {
-                if (window.innerWidth >= 992) {
-                    // Desktop
-                    if (desktopBtn) desktopBtn.style.display = 'block';
-                    if (mobileBtn) mobileBtn.style.display = 'none';
-                } else {
-                    // Mobile
-                    if (desktopBtn) desktopBtn.style.display = 'none';
-                    if (mobileBtn) mobileBtn.style.display = 'block';
-                }
-            }
-            
-            // Initial check
-            updateButtonVisibility();
-            
-            // Update on window resize
-            window.addEventListener('resize', updateButtonVisibility);
-        });
-    </script>
 
     <!-- Progress Bar Animation JavaScript -->
     <script>
