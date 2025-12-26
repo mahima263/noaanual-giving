@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wall of Donors</title>
+  <style>
+    :root {
+      --primary-color: #B04B34;
+      --hover-border: #B04B34;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    /* Banner */
+    .banner {
+      position: relative;
+      background-image: url('testimonials/_IIT6245.JPG'); /* Adjust path if needed */
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .banner::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    .banner h1,
+    .banner p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+    }
+
+    .banner h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .banner p {
+      font-size: 16px;
+      color: #fff3f0;
+    }
+
+    /* Wall of Donors */
+    .pledge-wall {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 20px;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .pledge-card {
+      background: var(--primary-color);
+      border-radius: 6px;
+      color: white;
+      box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.15);
+      min-height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: 0.3s ease;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .pledge-card:hover {
+      background-color: white;
+      color: black;
+      border-bottom: 4px solid var(--hover-border);
+    }
+
+    .pledge-card .name {
+      font-size: 18px;
+      margin-bottom: 2px;
+    }
+
+    .pledge-card .batch {
+      font-size: 14px;
+      font-style: regular;
+      margin-top: 3px;
+      opacity: 0.85;
+    }
+
+    /* Responsive Tablet */
+    @media (min-width: 600px) {
+      .banner {
+        height: 400px;
+      }
+      .banner h1 {
+        font-size: 36px;
+      }
+      .banner p {
+        font-size: 18px;
+      }
+      .pledge-wall {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 30px;
+      }
+    }
+
+    /* Responsive Desktop */
+    @media (min-width: 992px) {
+      .pledge-wall {
+        grid-template-columns: repeat(6, 1fr);
+        padding: 40px;
+        max-width: 1400px;
+        margin: auto;
+      }
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 480px) {
+      .banner h1 {
+        font-size: 24px;
+      }
+      .banner p {
+        font-size: 14px;
+      }
+      .pledge-card {
+        font-size: 13px;
+        min-height: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Banner -->
+  <div class="banner">
+    <h1>Wall of Donors</h1>
+    <p>Celebrating the generous spirit of our alumni and well-wishers</p>
+  </div>
+
+  <!-- Wall Display -->
+  <div id="pledgeWall" class="pledge-wall"></div>
+
+  <script>
+    const donors = [
+      { name: "Mahima Agarwal", batch: "B.Tech/ME/1996" },
+      { name: "Amit Verma", batch: "B.Tech/EE/1995" },
+      { name: "Priya Singh", batch: "B.Tech/CS/1997" },
+      { name: "Rahul Mehta", batch: "B.Tech/ME/1996" },
+      { name: "Sanya Kapoor", batch: "B.Tech/EE/1995" },
+      { name: "Neha Agarwal", batch: "B.Tech/CS/1997" },
+      { name: "Vikram Das", batch: "B.Tech/ME/1996" },
+      { name: "Ishita Malhotra", batch: "B.Tech/EE/1995" },
+      { name: "Kabir Choudhary", batch: "B.Tech/ME/1996" },
+      { name: "Rajiv Kumar", batch: "B.Tech/CS/1997" }
+      // Add more as needed
+    ];
+
+    const pledgeWall = document.getElementById('pledgeWall');
+
+    donors.forEach(donor => {
+      const card = document.createElement('div');
+      card.classList.add('pledge-card');
+      card.innerHTML = `
+        <div class="name">${donor.name}</div>
+        <div class="batch">${donor.batch}</div>
+      `;
+      pledgeWall.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>

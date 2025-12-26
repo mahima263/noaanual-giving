@@ -34,16 +34,28 @@
 
     <!-- Hero Banner Styles -->
     <style>
-        /* Hero Banner Section */
+        /* Reset margin/padding for hero banner */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Hero Banner Section - FIXED to remove extra space */
         .hero-banner-section {
             position: relative;
+            margin: 0;
+            padding:10 px;
+            overflow: hidden;
         }
 
         .hero-banner-section .hero-banner {
             width: 100%;
-            height: 800px;
+            height: 90vh;
             overflow: hidden;
             position: relative;
+            margin: 0;
+            padding: 0;
+            display: block;
         }
 
         .hero-banner-section .hero-banner img {
@@ -51,6 +63,9 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
+            display: block;
+            margin: 0;
+            padding: 0;
         }
 
         .hero-banner-overlay {
@@ -99,7 +114,7 @@
             }
 
             .hero-banner-section .hero-banner {
-                height: 600px;
+                height: 70vh;
             }
         }
 
@@ -117,7 +132,7 @@
             }
 
             .hero-banner-section .hero-banner {
-                height: 350px;
+                height: 80vh;
             }
 
             .hero-cta-button {
@@ -136,7 +151,7 @@
             }
 
             .hero-banner-section .hero-banner {
-                height: 300px;
+                height: 50vh;
             }
 
             .hero-banner-overlay {
@@ -182,22 +197,36 @@
             text-decoration: none !important;
         }
 
-        .btn-getstarted {
-            background: #cfa20c;
-            color: #fff;
+        /* UNIFIED BUTTON STYLES - Both buttons look the same */
+        .btn-getstarted, .btn-donate-nav {
+            background: #fff;
+            color: #B04B34;
             font-weight: 600;
-            padding: 8px 22px;
+            padding: 10px 24px;
             border-radius: 25px;
             text-decoration: none;
-            transition: 0.3s ease;
+            transition: all 0.3s ease;
             white-space: nowrap;
-            margin-left: 10px;
+            border: 2px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
         }
 
-        .btn-getstarted:hover {
-            background: #b8900a;
+        .btn-getstarted:hover, .btn-donate-nav:hover {
+            background: transparent;
             color: #fff;
+            border-color: #fff;
             text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        /* Header Buttons Container */
+        .header-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         @media (max-width: 991px) {
@@ -209,7 +238,7 @@
                 font-size: 1rem;
             }
 
-            .btn-getstarted {
+            .btn-getstarted, .btn-donate-nav {
                 display: none !important;
             }
 
@@ -219,92 +248,54 @@
                 cursor: pointer;
                 margin-left: 10px;
             }
+            
+            .header-buttons {
+                display: none;
+            }
         }
+        
         /* Simple fix for navmenu underline */
-.navmenu a {
-    text-decoration: none !important;
-    border-bottom: none !important;
-}
+        .navmenu a {
+            text-decoration: none !important;
+            border-bottom: none !important;
+        }
 
-.navmenu a.active {
-    border-bottom: none !important;
-    text-decoration: none !important;
-}
-/* ===== DONATE NOW BUTTON STYLES ===== */
-.donate-now-btn {
-    background-color: #B04B34;
-    color: white;
-    border: none;
-    padding: 15px 25px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 999;
-}
+        .navmenu a.active {
+            border-bottom: none !important;
+            text-decoration: none !important;
+        }
+        
+        /* Mobile Donate Button - Matching style */
+        .mobile-donate-btn {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 16px;
+            text-align: center;
+            display: none;
+            background-color: #fff;
+            color: #B04B34;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
 
-/* Desktop - Vertical right side button */
-.desktop-donate-btn {
-    position: fixed;
-    right: -40px;
-    top: 50%;
-    transform: translateY(-50%) rotate(-90deg);
-    background: #b04b34;
-    color: #fff;
-    padding: 14px 25px;
-    font-size: 20px;
-    font-weight: 700;
-    text-decoration: none;
-    border-radius: 6px 6px 0 0;
-    z-index: 9999;
-    letter-spacing: 1px;
-    display: none;
-    border: none;
-    cursor: pointer;
-}
+        .mobile-donate-btn:hover {
+            background-color: #f0f0f0;
+            color: #B04B34;
+        }
 
-.desktop-donate-btn:hover {
-    background: #9a3f2d;
-    right: -38px;
-}
-
-/* Mobile - Fixed bottom button */
-.mobile-donate-btn {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 15px;
-    text-align: center;
-    display: none;
-    background-color: #b04b34;
-    color: white;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 999;
-    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
-    font-size: 18px;
-}
-
-.mobile-donate-btn:hover {
-    background-color: #9a3f2d;
-}
-
-/* Responsive display */
-@media (min-width: 992px) {
-    .desktop-donate-btn {
-        display: block;
-    }
-}
-
-@media (max-width: 991px) {
-    .mobile-donate-btn {
-        display: block;
-    }
-}
+        @media (max-width: 991px) {
+            .mobile-donate-btn {
+                display: block;
+            }
+        }
     </style>
 
 </head>
@@ -331,33 +322,33 @@
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
-            <a class="btn-getstarted d-none d-sm-block" href="https://iitk.ac.in/dora/annualgiving/wallofdonors.php">
-                Wall Of Donors
-            </a>
-           
+            <!-- Header Buttons Container -->
+            <div class="header-buttons">
+                <a class="btn-donate-nav" href="https://iitk.ac.in/dora/annualgiving/wallofdonors.php" target="_blank">
+                    Wall Of Donors
+                </a>
+                <a class="btn-donate-nav" href="https://iitk.ac.in/dora/givingback/donate/Annual-Gift-Programme" target="_blank">
+                    Donate Now
+                </a>
+            </div>
         </div>
     </header>
 
     <!-- Hero Banner Section -->
     <section class="hero-banner-section">
         <div class="hero-banner">
-            <img src="banner.jpeg" alt="Annual Giving Banner" class="img-fluid">
-            
+            <img src="bannera.jpeg" alt="Annual Giving Banner" class="img-fluid">
         </div>
     </section>
  
- <!-- Donate Now Buttons - FIXED VERSION -->
- <a href="https://iitk.ac.in/dora/givingback/donate/Annual-Gift-Programme">
-    <button class="desktop-donate-btn">Donate Now</button>
-  </a>
-  
-  <a href="https://iitk.ac.in/dora/givingback/donate/Annual-Gift-Programme">
-    <button class="mobile-donate-btn">Donate Now</button>
-  </a>
+    <!-- Mobile Donate Now Button -->
+    <a href="https://iitk.ac.in/dora/givingback/donate/Annual-Gift-Programme" target="_blank" class="mobile-donate-btn">
+        Donate Now
+    </a>
   
     <main class="main">
-        <!-- About Section -->
-        <section id="about-season" class="about-season section" style="padding: 50px 0;">
+        <!-- About Section - Adjusted padding to remove extra space -->
+        <section id="about-season" class="about-season section" style="padding: 40px 0 50px 0;">
             <div class="container">
                 <div class="row align-items-center gy-4">
                     <div class="col-lg-6">
@@ -802,22 +793,24 @@
                 }
 
                 .btn-donor-cta {
-                    background-color: #B04B34;
-                    color: #fff;
+                    background-color: #fff;
+                    color: #B04B34;
                     font-weight: 600;
-                    padding: 18px 28px;
-                    font-size: 2rem;
-                    border-radius: 8px;
+                    padding: 14px 28px;
+                    font-size: 1.5rem;
+                    border-radius: 25px;
                     text-decoration: none;
                     display: inline-block;
                     transition: all 0.3s ease;
+                    border: 2px solid transparent;
                 }
 
                 .btn-donor-cta:hover {
-                    background-color: #9a3f2d;
+                    background-color: transparent;
+                    color: #B04B34;
+                    border-color: #B04B34;
                     transform: translateY(-2px);
                     text-decoration: none;
-                    color: #fff;
                 }
 
                 @media (max-width: 992px) {
@@ -839,6 +832,11 @@
                         width: 70px;
                         height: 70px;
                         font-size: 1.5rem;
+                    }
+                    
+                    .btn-donor-cta {
+                        font-size: 1.3rem;
+                        padding: 12px 24px;
                     }
                 }
 
@@ -868,6 +866,11 @@
                     .flip-card-back p {
                         font-size: 0.85rem;
                         padding: 5px;
+                    }
+                    
+                    .btn-donor-cta {
+                        font-size: 1.1rem;
+                        padding: 10px 20px;
                     }
                 }
 
@@ -990,11 +993,6 @@
                     .contrib-stats-label {
                         font-size: 1.1rem;
                     }
-                    
-                    .btn-donor-cta {
-                        font-size: 1.5rem;
-                        padding: 15px 25px;
-                    }
                 }
 
                 @media (max-width: 576px) {
@@ -1004,11 +1002,6 @@
                     
                     .contrib-stats-label {
                         font-size: 1rem;
-                    }
-                    
-                    .btn-donor-cta {
-                        font-size: 1.3rem;
-                        padding: 12px 20px;
                     }
                     
                     .container.text-center.px-5 {
@@ -1764,51 +1757,6 @@
 
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
-
-    <!-- Donate Now Button JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Donation URL - Replace with your actual donation link
-            const DONATION_URL = 'https://iitk.ac.in/dora/annualgiving/donation.php';
-            
-            // Get both buttons
-            const desktopBtn = document.getElementById('desktopDonateBtn');
-            const mobileBtn = document.getElementById('mobileDonateBtn');
-            
-            // Add click event to desktop button
-            if (desktopBtn) {
-                desktopBtn.addEventListener('click', function() {
-                    window.open(DONATION_URL, '_blank');
-                });
-            }
-            
-            // Add click event to mobile button
-            if (mobileBtn) {
-                mobileBtn.addEventListener('click', function() {
-                    window.open(DONATION_URL, '_blank');
-                });
-            }
-            
-            // Responsive button visibility (CSS already handles this, but this is backup)
-            function updateButtonVisibility() {
-                if (window.innerWidth >= 992) {
-                    // Desktop
-                    if (desktopBtn) desktopBtn.style.display = 'block';
-                    if (mobileBtn) mobileBtn.style.display = 'none';
-                } else {
-                    // Mobile
-                    if (desktopBtn) desktopBtn.style.display = 'none';
-                    if (mobileBtn) mobileBtn.style.display = 'block';
-                }
-            }
-            
-            // Initial check
-            updateButtonVisibility();
-            
-            // Update on window resize
-            window.addEventListener('resize', updateButtonVisibility);
-        });
-    </script>
 
     <!-- Progress Bar Animation JavaScript -->
     <script>
